@@ -12,7 +12,7 @@
       </template>
     </tab-bar-item>
 
-    <tab-bar-item path="/category">
+    <tab-bar-item path="/categroy">
       <template v-slot:item-icon>
         <img src="@/assets/img/tabbar/category.svg" alt="" />
       </template>

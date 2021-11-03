@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+const Home = () => import('@/views/home/Home.vue')
+const Category = () => import('@/views/categroy/CateGroy.vue')
+const Cart = () => import('@/views/cart/Cart.vue')
+const Profile = () => import('@/views/profile/ProFile.vue')
+const Detail = () => import('@/views/detail/Detail.vue')
+
 Vue.use(VueRouter)
 
 // 解决导航栏或者底部导航tabBar中的vue-router在3.0版本以上频繁点击菜单报错的问题。
@@ -9,31 +15,36 @@ VueRouter.prototype.replace = function replace(location) {
   return originalReplace.call(this, location).catch(err => err)
 }
 
-const routers = [
+const routes = [
   {
-    url: '',
+    path: '/',
     redirect: '/home'
   },
   {
-    url: '/home',
-    component: () => import('@/views/home/Home.vue')
+    path: '/home',
+    component: Home
   },
   {
-    url: '/cart',
-    component: () => import('@/views/cart/Cart.vue')
+    path: '/cart',
+    component: Cart
   },
   {
-    url: '/categroy',
-    component: () => import('@/views/categroy/CateGroy.vue')
+    path: '/categroy',
+    component: Category
   },
   {
-    url: '/profile',
-    component: () => import('@/views/profile/ProFile.vue')
+    path: '/profile',
+    component: Profile
+  },
+  {
+    path: '/detail/:id',
+    component: Detail
   }
 ]
 
 const router = new VueRouter({
-  routers
+  routes,
+  mode: 'history'
 })
 
 export default router
